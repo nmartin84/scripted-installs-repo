@@ -57,12 +57,12 @@ sudo mkdir /var/repo
 sudo chown www-data /var/repo
 
 # Configure Phab Settings
-cd /
-sudo var/www/html/repository/phabricator/bin/config set storage.local-disk.path /var/$storpath
-sudo var/www/html/repository/phabricator/bin/config set files.enable-imagemagick true
-sudo var/www/html/repository/phabricator/bin/config set phabricator.base-uri 'http://$siteID/'
-sudo var/www/html/repository/phabricator/bin/config set phabricator.developer-mode true
-sudo var/www/html/repository/phabricator/bin/config set pygments.enabled true
+cd /var/www/html/repository/phabricator
+sudo ./bin/config set storage.local-disk.path /var/$storpath
+sudo ./bin/config set files.enable-imagemagick true
+sudo ./bin/config set phabricator.base-uri 'http://$siteID/'
+sudo ./bin/config set phabricator.developer-mode true
+sudo ./bin/config set pygments.enabled true
 
 # SQL Changes
 sudo rm /etc/mysql/my.cnf

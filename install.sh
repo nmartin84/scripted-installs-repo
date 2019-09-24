@@ -66,7 +66,7 @@ sudo var/www/html/repository/phabricator/bin/config set pygments.enabled true
 
 # SQL Changes
 sudo rm /etc/mysql/my.cnf
-sudo cp ~/phab-install/my.cnf /etc/mysql/my.cnf
+sudo wget https://raw.githubusercontent.com/nmartin84/phabricator-install/master/my.cnf -o /etc/mysql/my.cnf
 
 # Update tables
 cd /var/www/html/repository/phabricator

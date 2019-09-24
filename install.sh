@@ -31,6 +31,9 @@ mysql -e "FLUSH PRIVILEGES"
 read -p "Enter address URL for your site with no trailing /'s: " siteID
 sudo curl /phab-template.conf -o /etc/apache2/sites-available/phabricator.conf
 sudo sed -i 's/ServerName replaceme/ServerName $siteID/g' /etc/apache2/sites-available/phabricator.conf
+sudo a2ensite phabricator.conf
+sudo a2enmod rewrite
+sudo /etc/init.d/apache2 restart
 
 # Install phabricator
 sudo mkdir /var/www/html/repository
@@ -38,6 +41,8 @@ cd /var/www/html/repository
 sudo git clone https://github.com/phacility/libphutil.git
 sudo git clone https://github.com/phacility/arcanist.git
 sudo git clone https://github.com/phacility/phabricator.git
+sudo chown -R www-data:www-data /var/www/html/repository/phabricator/
+sudo chmod -R 755 /var/www/html/repository/phabricator/
 
 # Update PHP.ini
 sudo curl https://raw.githubusercontent.com/nmartin84/phabricator-install/master/php.ini -o /etc/php/7.2/apache2/php.ini
@@ -62,3 +67,14 @@ sudo var/www/html/repository/phabricator/bin/config set pygments.enabled true
 # SQL Changes
 sudo rm /etc/mysql/my.cnf
 sudo cp ~/phab-install/my.cnf /etc/mysql/my.cnf
+
+# Update tables
+cd /var/www/html/repository/phabricator
+sudo ./bin/config set mysql.host localhost
+sudo ./bin/config set mysql.user root
+sudo ./bin/config set mysql.pass $sqlpswd
+sudo ./bin/storage upgrade --user root --password $sqlpswd
+
+# Restart everything
+sudo /etc/init.d/mysql restart
+sudo /etc/init.d/apache2 restart

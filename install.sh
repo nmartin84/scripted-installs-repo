@@ -1,3 +1,5 @@
+phab_path = /var/www/html/repository/phabricator/
+
 # Install packages
 sudo apt update
 sudo apt install apache2 -y
@@ -8,6 +10,7 @@ sudo apt update -y
 sudo apt install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-curl php7.2-mbstring php7.2-xmlrpc php7.2-mysql php7.2-gd php7.2-xml php7.2-json php7.2-cli php7.0-apcu -y
 sudo apt install git -y
 sudo apt install wget -y
+sudo apt-get install python-pygments -y
 
 # Setup MYSQL
 read -p "Enter new password for SQL: " sqlpswd
@@ -36,10 +39,22 @@ wget
 read -p "Enter storage folder name: " storpath
 sudo mkdir /var/$storpath
 sudo chown www-data /var/$storpath
-cd /var/www/html/repository/phabricator
-sudo ./bin/config set storage.local-disk.path $storpath
-sudo ./bin/config set files.enable-imagemagick true
-/bin/config set phabricator.base-uri 'http://$siteID/'
+
+# Configure Repo Directory
+sudo mkdir /var/repo
+sudo chown www-data /var/repo
+
+# Configure Phab Settings
+cd $phab_path
+sudo var/www/html/repository/phabricator/bin/config set storage.local-disk.path /var/$storpath
+sudo var/www/html/repository/phabricator/bin/config set files.enable-imagemagick true
+sudo var/www/html/repository/phabricator/bin/config set phabricator.base-uri 'http://$siteID/'
+sudo var/www/html/repository/phabricator/bin/config set phabricator.developer-mode true
+sudo var/www/html/repository/phabricator/bin/config set pygments.enabled true
+
+# SQL Changes
+sudo rm /etc/mysql/my.cnf
+sudo cp ~/phab-install/my.cnf /etc/mysql/my.cnf
 
 # Install imagemagick and support
 sudo apt install imagemagick

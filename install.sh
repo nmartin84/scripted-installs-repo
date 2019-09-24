@@ -30,7 +30,7 @@ mysql -e "FLUSH PRIVILEGES"
 # Configure apache virutal hosts
 read -p "Enter address URL for your site with no trailing /'s: " siteID
 sudo curl https://raw.githubusercontent.com/nmartin84/phabricator-install/master/phab-template.conf -o /etc/apache2/sites-available/phabricator.conf
-sudo sed -i 's/ServerName replaceme/ServerName $siteID/g' /etc/apache2/sites-available/phabricator.conf
+sudo sed -i "s/ServerName replaceme/ServerName $siteID" /etc/apache2/sites-available/phabricator.conf
 sudo a2ensite phabricator.conf
 sudo a2enmod rewrite
 sudo /etc/init.d/apache2 restart

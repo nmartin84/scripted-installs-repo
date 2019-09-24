@@ -22,7 +22,7 @@ mysql -e "FLUSH PRIVILEGES"
 
 # Configure apache virutal hosts
 read -p "Enter address URL for your site with no trailing /'s: " siteID
-sudo cp ~/phabricator-temp.conf /etc/apache2/sites-available/phabricator.conf
+sudo wget /phab-template.conf /etc/apache2/sites-available/phabricator.conf
 sudo sed -i 's/ServerName example.com/ServerName $siteID/g' /etc/apache2/sites-available/phabricator.conf
 
 # Install phabricator

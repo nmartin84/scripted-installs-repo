@@ -60,7 +60,7 @@ sudo chown www-data /var/repo
 cd /var/www/html/repository/phabricator
 sudo ./bin/config set storage.local-disk.path /var/$storpath
 sudo ./bin/config set files.enable-imagemagick true
-sudo ./bin/config set phabricator.base-uri 'http://$siteID/'
+sudo ./bin/config set phabricator.base-uri http://"$siteid"
 sudo ./bin/config set phabricator.developer-mode true
 sudo ./bin/config set pygments.enabled true
 

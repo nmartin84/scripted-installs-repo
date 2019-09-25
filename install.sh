@@ -2,10 +2,20 @@ phab_path = /var/www/html/repository/phabricator/
 
 # Update packages
 sudo apt update
+
 # Install apache
 sudo apt install apache2 -y
+
 # Intstall maria
 sudo apt-get install mariadb-server mariadb-client -y
+# Setup MYSQL
+read -p "Enter new password for SQL: " sqlpswd
+mysql -e "UPDATE mysql.user SET Password = PASSWORD('$sqlpswd') WHERE User = 'root'"
+mysql -e "DROP USER ''@'localhost'"
+mysql -e "DROP USER ''@'$(hostname)'"
+mysql -e "DROP DATABASE test"
+mysql -e "FLUSH PRIVILEGES"
+
 # Install common
 sudo apt-get install software-properties-common -y
 # Add repository
@@ -16,16 +26,9 @@ sudo apt install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-curl php7.2-m
 sudo apt install git -y
 sudo apt install curl -y
 sudo apt-get install python-pygments -y
+
 # Install imagemagick and support
 sudo apt install imagemagick
-
-# Setup MYSQL
-read -p "Enter new password for SQL: " sqlpswd
-mysql -e "UPDATE mysql.user SET Password = PASSWORD('$sqlpswd') WHERE User = 'root'"
-mysql -e "DROP USER ''@'localhost'"
-mysql -e "DROP USER ''@'$(hostname)'"
-mysql -e "DROP DATABASE test"
-mysql -e "FLUSH PRIVILEGES"
 
 # Configure apache virutal hosts
 read -p "Enter address URL for your site with no trailing /'s: " siteID

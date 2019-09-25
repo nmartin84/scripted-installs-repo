@@ -28,12 +28,17 @@ sudo add-apt-repository ppa:ondrej/php -y
 sudo apt update -y
 # Install PHP & MISC
 sudo apt install php7.2 libapache2-mod-php7.2 php7.2-common php7.2-curl php7.2-mbstring php7.2-xmlrpc php7.2-mysql php7.2-gd php7.2-xml php7.2-json php7.2-cli php7.0-apcu -y
+# Install extras
+sudo apt install git -y
+sudo apt-get install python-pygments -y
+sudo apt install imagemagick -y
 
 # Update PHP.ini
 sudo curl https://raw.githubusercontent.com/nmartin84/phabricator-install/master/php.ini -o /etc/php/7.2/apache2/php.ini
 sudo /etc/init.d/apache2 restart
 
 # Install phabricator
+sudo mkdir /var/www/html/repository
 cd /var/www/html/repository
 sudo git clone https://github.com/phacility/libphutil.git
 sudo git clone https://github.com/phacility/arcanist.git
@@ -45,11 +50,6 @@ sudo ./bin/config set mysql.host localhost
 sudo ./bin/config set mysql.user root
 sudo ./bin/config set mysql.pass $sqlpswd
 sudo ./bin/storage upgrade --user root --password $sqlpswd
-
-# Install extras
-sudo apt install git -y
-sudo apt-get install python-pygments -y
-sudo apt install imagemagick -y
 
 # Configure apache virutal hosts
 read -p "Enter address URL for your site with no trailing /'s: " siteid

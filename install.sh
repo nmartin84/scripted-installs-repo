@@ -52,7 +52,7 @@ sudo apt-get install python-pygments -y
 sudo apt install imagemagick -y
 
 # Configure apache virutal hosts
-read -p "Enter address URL for your site with no trailing /'s: " siteID
+read -p "Enter address URL for your site with no trailing /'s: " siteid
 sudo curl https://raw.githubusercontent.com/nmartin84/phabricator-install/master/phab-template.conf -o /etc/apache2/sites-available/phabricator.conf
 sudo sed -i "s/ServerName replaceme/ServerName $siteid/g" /etc/apache2/sites-available/phabricator.conf
 sudo a2ensite phabricator.conf

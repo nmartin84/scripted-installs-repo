@@ -12,3 +12,11 @@ followed by
 ```
 sudo ~/install.sh
 ```
+Once completed you will need to run the following sql queries before phabricator will work
+```
+sudo mysql -u root
+use mysql;
+update user set plugin='' where User='root';
+flush privileges;
+Exit
+```

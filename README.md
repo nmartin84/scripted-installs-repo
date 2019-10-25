@@ -1,22 +1,4 @@
-# How to install
-Pull this file to your box with curl or save it locally  
-```
-curl https://raw.githubusercontent.com/nmartin84/phabricator-install/master/install.sh -o ~/install.sh
-```  
-
-Then run  
-```
-sudo chmod go+x ~/install.sh
-```  
-followed by  
-```
-sudo ~/install.sh
-```
-Once completed you will need to run the following sql queries before phabricator will work
-```
-sudo mysql -u root
-use mysql;
-update user set plugin='' where User='root';
-flush privileges;
-Exit
-```
+Personal repository for scripted installations for a few solutions. Just grab
+the .sh file for whatever you're wanting to install, copy to your system and run
+it. These have been tested running Ubuntu 16.04, if you're running a different
+version or distro you may need to tweak.

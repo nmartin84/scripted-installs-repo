@@ -1,8 +1,8 @@
 # -*- mode: org; -*-
 
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/nmartin84/org-html-theme-darksun/master/export/styles/darksun/css/htmlize.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/nmartin84/org-html-theme-darksun/master/export/styles/darksun/css/darksun.css"/>
-#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/nmartin84/org-html-theme-darksun/master/export/styles/darksun/css/hideshow.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://codepen.io/nmartin84/pen/abzyxqW.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://codepen.io/nmartin84/pen/yLyorvY.css"/>
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://codepen.io/nmartin84/pen/rNazbJM.css"/>
 
 #+HTML_HEAD: <script type="text/javascript" src="https://alphapapa.github.io/emacs-package-dev-handbook/export/styles/darksun/js/jquery-1.11.3.min.js"></script>
 #+HTML_HEAD: <script type="text/javascript" src="https://alphapapa.github.io/emacs-package-dev-handbook/export/styles/darksun/js/jquery-ui-1.10.2.min.js"></script>
